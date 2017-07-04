@@ -4,10 +4,14 @@
     <meta charset="utf-8">
     <script type="text/javascript" src="vendors/jquery.min.js"></script>
     <script type="text/javascript" src="scripts/client.js"></script>
+    <link rel="stylesheet" href="vendors/bootstrap.min.css"/>
     <link rel="stylesheet" href="styles/styles.css"/>
     <title>Weekend Challenge 2</title>
   </head>
   <body>
+
+    <!-- base mode
+
     <h1>Calculator!</h1>
     <input type="number" id="input1" placeholder="choose a number!">
     <input type="number" id="input2" placeholder="And another!">
@@ -16,5 +20,44 @@
     <button class="calculation" data-operation="multiply">*</button>
     <button class="calculation" data-operation="divide">/</button>
     <div id="displayValue"></div>
+
+    end base mode -->
+
+
+  <!--hard/pro mode -->
+  <div class="container">
+    <div class="row">
+      <div><hr>Calculator</hr></div>
+    </div>
+    <div class="row">
+      <div><input type="text" placeholder="Lets do some math!"></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4"><button class="valueButton" data-id="0">0</button></div>
+      <div class="col-xs-4"><button class="valueButton" data-id="1">1</button></div>
+      <div class="col-xs-4"><button class="valueButton" data-id="2">2</button></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4"><button class="valueButton" data-id="3">3</button></div>
+      <div class="col-xs-4"><button class="valueButton" data-id="4">4</button></div>
+      <div class="col-xs-4"><button class="valueButton" data-id="5">5</button></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4"><button class="valueButton" data-id="6">6</button></div>
+      <div class="col-xs-4"><button class="valueButton" data-id="7">7</button></div>
+      <div class="col-xs-4"><button class="valueButton" data-id="8">8</button></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4"><button class="valueButton" data-id="9">9</button></div>
+      <div class="col-xs-4"><button class="operationButton" data-id="add">+</button></div>
+      <div class="col-xs-4"><button class="operationButton" data-id="subtract">-</button></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4"><button class="operationButton" data-id="multiply">*</button></div>
+      <div class="col-xs-4"><button class="operationButton" data-id="divide">/</button></div>
+      <div class="col-xs-4"><button class="submitButton" data-id="equals">=</button></div>
+    </div>
+  </div>
+
   </body>
 </html>
