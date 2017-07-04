@@ -54,8 +54,10 @@ app.listen(port, function() {
 
 app.post('/sendToCalculate', function(req, res) {
   var val1 = req.body.val1;
+  var val2 = req.body.val2;
   var operation = req.body.operation;
   res.send({message: 'performing calculation...'});
-  console.log(req.body);
+  console.log(val1);
+  console.log(val2);
 
 });//end post

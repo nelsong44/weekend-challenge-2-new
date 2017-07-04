@@ -23,7 +23,8 @@
 //     success: function(response) {
 //       console.log(response);
 //       $('#displayValue').empty();
-//       $('#displayValue').append('<p> Value: ' + response.completedCalculation + '</p>');
+//       $('#displayValue').append('<p> Value: ' +
+//        response.completedCalculation + '</p>');
 //     }//end success
 //   });//end post
 //   //clear inpout fields
@@ -36,40 +37,44 @@
 
 // hard/pro mode -->
 
+//globals
+var firstVal = [];
+var currentVal = [];
+var val1;
+var val2;
+var operation;
+
 $(document).ready(function() {
   $('.valueButton').on('click', packageCurrentValue);
   $('.operationButton').on('click', packageOp);
   $('#submitButton').on('click', sendToServer);
 });//end ready
 
-var currentValStorage = [];
-var val1;
 //function to join each value (button click) into a single value
 function packageCurrentValue() {
   var info = $(this).data('id');
-  currentValStorage.push(info);
-  val1 = currentValStorage.join('');
+  currentVal.push(info);
+  val1 = currentVal.join('');
   $('#display').val(val1);
   console.log(val1);
 }//end packageCurrentValue
 
 //function to target operation to be performed based on button click
-var operation;
 function packageOp() {
   operation = $(this).data('id');
   console.log(operation);
   $(this).css('background-color', 'orange');
-  changeCurrentValue();
+  swapCurrentValue();
 }//end packageOp
 
-var firstValue = [];
-//function to change the current value to the stored value
-function changeCurrentValue() {
+//function to change the current value to the first value
+function swapCurrentValue() {
   document.getElementById('display').value = '';
-  firstValue.push(val1);
-  console.log(firstValue);
-  currentValStorage = [];
-}//end changeCurrentValue
+  // firstVal.push(val1);
+  // console.log(firstVal);
+  val2 = val1;
+  currentVal = [];
+}//end swapCurrentValue
 
 //function to package values and operation into obj to send to server
 function sendToServer() {
@@ -78,6 +83,7 @@ function sendToServer() {
     url: '/sendToCalculate',
     data: {
       val1: val1,
+      val2: val2,
       operation: operation
     },
     success: function(response) {
@@ -86,4 +92,4 @@ function sendToServer() {
   });//end post
 }//end sendToServer
 
-//on click of operationButton, push val1 into new array and empty currentValStorage to fill with second value
+//on click of operationButton, push val1 into new array and empty currentVal to fill with second value
