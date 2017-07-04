@@ -37,28 +37,39 @@
 // hard/pro mode -->
 
 $(document).ready(function() {
-  $('.valueButton').on('click', packageValues);
+  $('.valueButton').on('click', packageFirstValue);
   $('#submitButton').on('click', sendToServer);
+  $('.operationButton').on('click', packageOp);
 });//end ready
 
 var valueStorage = [];
-function packageValues() {
-  console.log($(this));
-  valueStorage.push($(this).data('id'));
-  for (var i = 0; i < valueStorage.length; i++) {
-    $('#display').val(valueStorage[i]);
-  }
-  console.log(valueStorage);
-  return valueStorage;
+var val1;
+//function to push each value chosen by user (based on buttons clicked)
+//into an array to join into a single integer and package into an object 
+function packageFirstValue() {
+  var info = $(this).data('id');
+  valueStorage.push(info);
+  // for (var i = 0; i < valueStorage.length; i++) {
+  //   $('#display').val(valueStorage[i]);
+  // }
+  val1 = valueStorage.join('');
+  $('#display').val(val1);
+  console.log(val1);
 }//end packageValues
-console.log(valueStorage);
+
+var operation;
+function packageOp() {
+  operation = $(this).data('id');
+  console.log(operation);
+}
 
 function sendToServer() {
   $.ajax({
     type: 'POST',
     url: '/sendToCalculate',
     data: {
-      calcInfo: valueStorage
+      val1: val1,
+      operation: operation
     },
     success: function(response) {
       console.log(response);

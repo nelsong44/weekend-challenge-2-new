@@ -53,11 +53,9 @@ app.listen(port, function() {
 // });//end post
 
 app.post('/sendToCalculate', function(req, res) {
-  //verify object sent from client
-  console.log(req.body.calcInfo);
-  var info = req.body.calcInfo;
-  res.send({message: 'received array'});
-  for (var i = 0; i < info.length; i++) {
-    console.log(info[i]);
-  }
+  var val1 = req.body.val1;
+  var operation = req.body.operation;
+  res.send({message: 'performing calculation...'});
+  console.log(req.body);
+
 });//end post
