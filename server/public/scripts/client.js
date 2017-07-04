@@ -37,32 +37,41 @@
 // hard/pro mode -->
 
 $(document).ready(function() {
-  $('.valueButton').on('click', packageFirstValue);
-  $('#submitButton').on('click', sendToServer);
+  $('.valueButton').on('click', packageCurrentValue);
   $('.operationButton').on('click', packageOp);
+  $('#submitButton').on('click', sendToServer);
 });//end ready
 
-var valueStorage = [];
+var currentValStorage = [];
 var val1;
-//function to push each value chosen by user (based on buttons clicked)
-//into an array to join into a single integer and package into an object 
-function packageFirstValue() {
+//function to join each value (button click) into a single value
+function packageCurrentValue() {
   var info = $(this).data('id');
-  valueStorage.push(info);
-  // for (var i = 0; i < valueStorage.length; i++) {
-  //   $('#display').val(valueStorage[i]);
-  // }
-  val1 = valueStorage.join('');
+  currentValStorage.push(info);
+  val1 = currentValStorage.join('');
   $('#display').val(val1);
   console.log(val1);
-}//end packageValues
+}//end packageCurrentValue
 
+//function to target operation to be performed based on button click
 var operation;
 function packageOp() {
   operation = $(this).data('id');
   console.log(operation);
-}
+  $(this).css('background-color', 'orange');
+  changeCurrentValue();
+}//end packageOp
 
+var firstValue = [];
+//function to change the current value to the stored value
+function changeCurrentValue() {
+  document.getElementById('display').value = '';
+  firstValue.push(val1);
+  console.log(firstValue);
+  currentValStorage = [];
+}//end changeCurrentValue
+
+//function to package values and operation into obj to send to server
 function sendToServer() {
   $.ajax({
     type: 'POST',
@@ -76,3 +85,5 @@ function sendToServer() {
     }//end success
   });//end post
 }//end sendToServer
+
+//on click of operationButton, push val1 into new array and empty currentValStorage to fill with second value
