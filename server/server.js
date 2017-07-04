@@ -3,10 +3,8 @@ var app = express(); //call express function to create an instance of the obj
 var path = require('path');
 var bodyParser = require('body-parser');
 var port = 5000; //establish a port
-// var operation = require('./routes/operation.js');
 
 app.use(bodyParser.urlencoded({extended:true}));
-// app.use('/operaton', operation);
 
 app.get('/*', function(req, res) {
   var file = req.params[0] || 'views/index.html';
@@ -53,3 +51,13 @@ app.listen(port, function() {
 
 
 // });//end post
+
+app.post('/sendToCalculate', function(req, res) {
+  //verify object sent from client
+  console.log(req.body.calcInfo);
+  var info = req.body.calcInfo;
+  res.send({message: 'received array'});
+  for (var i = 0; i < info.length; i++) {
+    console.log(info[i]);
+  }
+});//end post

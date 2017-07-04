@@ -14,7 +14,7 @@
 //   var secondNumber = $('#input2').val();
 //   $.ajax({
 //     type: 'POST',
-//     url: '/operation',
+//     url: '/sendToCalculate',
 //     data: {
 //       firstNumber: firstNumber,
 //       secondNumber: secondNumber,
@@ -35,3 +35,33 @@
 // end base mode --------------------------------------------------------->
 
 // hard/pro mode -->
+
+$(document).ready(function() {
+  $('.valueButton').on('click', packageValues);
+  $('#submitButton').on('click', sendToServer);
+});//end ready
+
+var valueStorage = [];
+function packageValues() {
+  console.log($(this));
+  valueStorage.push($(this).data('id'));
+  for (var i = 0; i < valueStorage.length; i++) {
+    $('#display').val(valueStorage[i]);
+  }
+  console.log(valueStorage);
+  return valueStorage;
+}//end packageValues
+console.log(valueStorage);
+
+function sendToServer() {
+  $.ajax({
+    type: 'POST',
+    url: '/sendToCalculate',
+    data: {
+      calcInfo: valueStorage
+    },
+    success: function(response) {
+      console.log(response);
+    }//end success
+  });//end post
+}//end sendToServer
