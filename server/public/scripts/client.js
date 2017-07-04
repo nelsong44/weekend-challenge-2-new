@@ -13,10 +13,6 @@ function sendToServer() {
   var operation = $(this).data('operation');
   var firstNumber = $('#input1').val();
   var secondNumber = $('#input2').val();
-
-  console.log(operation);
-  console.log(firstNumber);
-  console.log(secondNumber);
   $.ajax({
     type: 'POST',
     url: '/sendToCalculate',
@@ -27,7 +23,11 @@ function sendToServer() {
     },//end data
     success: function(response) {
       console.log(response);
+      $('#displayValue').empty();
+      $('#displayValue').append('<p> Value: ' + response.completedCalculation + '</p>');
     }//end success
   });//end post
-
+  //clear inpout fields
+  document.getElementById('input1').value = '';
+  document.getElementById('input2').value = '';
 }//end sendToServer
