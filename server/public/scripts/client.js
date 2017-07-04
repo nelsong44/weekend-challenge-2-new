@@ -38,28 +38,25 @@
 // hard/pro mode -->
 
 //globals
-var firstVal = [];
-var currentVal = [];
-var val1;
+var val1 = '';
 var val2;
 var operation;
 
+//on page load
 $(document).ready(function() {
   $('.valueButton').on('click', packageCurrentValue);
   $('.operationButton').on('click', packageOp);
   $('#submitButton').on('click', sendToServer);
 });//end ready
 
-//function to join each value (button click) into a single value
+//concatenate each integer (button click) into a single, larger integer
 function packageCurrentValue() {
-  var info = $(this).data('id');
-  currentVal.push(info);
-  val1 = currentVal.join('');
+  val1 += $(this).data('id');
   $('#display').val(val1);
   console.log(val1);
 }//end packageCurrentValue
 
-//function to target operation to be performed based on button click
+//target operation to be performed based on button click
 function packageOp() {
   operation = $(this).data('id');
   console.log(operation);
@@ -67,13 +64,11 @@ function packageOp() {
   swapCurrentValue();
 }//end packageOp
 
-//function to change the current value to the first value
+//reassign the firs value to the second value, curretn value becomes first value
 function swapCurrentValue() {
   document.getElementById('display').value = '';
-  // firstVal.push(val1);
-  // console.log(firstVal);
   val2 = val1;
-  currentVal = [];
+  val1 = '';
 }//end swapCurrentValue
 
 //function to package values and operation into obj to send to server
@@ -91,5 +86,3 @@ function sendToServer() {
     }//end success
   });//end post
 }//end sendToServer
-
-//on click of operationButton, push val1 into new array and empty currentVal to fill with second value

@@ -59,5 +59,6 @@ app.post('/sendToCalculate', function(req, res) {
   res.send({message: 'performing calculation...'});
   console.log(val1);
   console.log(val2);
+  console.log(operation);
 
 });//end post
