@@ -16,7 +16,7 @@ app.listen(port, function() {
 }); //end listen
 
 // base mode ------------------------------------------------->
-
+//
 // app.post('/sendToCalculate', function(req, res) {
 //   //verify object sent from client
 //   console.log(req.body);
@@ -27,24 +27,21 @@ app.listen(port, function() {
 //   calc();
 //   //perform specified calculation
 //   function calc() {
-//     if(operation == 'add') {
+//     if (operation == 'add') {
 //       completedCalculation = firstNumber + secondNumber;
-//     }
-//     else if(operation == 'subtract') {
+//     } else if (operation == 'subtract') {
 //       completedCalculation = firstNumber - secondNumber;
-//     }
-//     else if (operation == 'multiply') {
+//     } else if (operation == 'multiply') {
 //       completedCalculation = firstNumber * secondNumber;
-//     }
-//     else {
+//     } else {
 //       completedCalculation = firstNumber / secondNumber;
 //     }
-//     console.log(completedCalculation);
-//     return completedCalculation;
-//   }
+//       console.log(completedCalculation);
+//       return completedCalculation;
+//     }//end if
 //   //send value from the completed calculation back to client
 //   res.send({completedCalculation: completedCalculation});
-
+// });//end post
 // end base mode ---------------------------------------------->
 
 // hard/pro mode -->
@@ -53,12 +50,30 @@ app.listen(port, function() {
 // });//end post
 
 app.post('/sendToCalculate', function(req, res) {
-  var val1 = req.body.val1;
-  var val2 = req.body.val2;
+  var val1 = parseInt(req.body.val1);
+  var val2 = parseInt(req.body.val2);
   var operation = req.body.operation;
-  res.send({message: 'performing calculation...'});
   console.log(val1);
   console.log(val2);
-  console.log(operation);
+  calc();
+  //perform specified calculation
+  var completedCalculation;
 
+  function calc() {
+    if (operation == 'add') {
+      completedCalculation = val1 + val2;
+    } else if (operation == 'subtract') {
+      completedCalculation = val1 - val2;
+    } else if (operation == 'multiply') {
+      completedCalculation = val1 * val2;
+    } else {
+      completedCalculation = val1 / val2;
+    }
+    console.log(completedCalculation);
+    return completedCalculation;
+  }
+  //send value from the completed calculation back to client
+  res.send({
+    completedCalculation: completedCalculation
+  });//end send
 });//end post

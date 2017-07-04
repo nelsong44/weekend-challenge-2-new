@@ -83,6 +83,8 @@ function sendToServer() {
     },
     success: function(response) {
       console.log(response);
+      document.getElementById('display').value = '';
+      $('#display').val(response.completedCalculation);
     }//end success
   });//end post
 }//end sendToServer
