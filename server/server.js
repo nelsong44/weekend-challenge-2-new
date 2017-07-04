@@ -15,8 +15,8 @@ app.listen(port, function() {
   console.log('server running on port: ', port);
 }); //end listen
 
-// base mode ------------------------------------------------->
-//
+// base mode ---------------------------------->
+
 // app.post('/sendToCalculate', function(req, res) {
 //   //verify object sent from client
 //   console.log(req.body);
@@ -42,32 +42,27 @@ app.listen(port, function() {
 //   //send value from the completed calculation back to client
 //   res.send({completedCalculation: completedCalculation});
 // });//end post
-// end base mode ---------------------------------------------->
+//end base mode ---------------------------------------------->
 
 // hard/pro mode -->
-
-
-// });//end post
-
+var completedCalculation;
 app.post('/sendToCalculate', function(req, res) {
-  var val1 = parseInt(req.body.val1);
-  var val2 = parseInt(req.body.val2);
+  var firstNumber = parseInt(req.body.firstNumber);
+  var secondNumber = parseInt(req.body.secondNumber);
   var operation = req.body.operation;
-  console.log(val1);
-  console.log(val2);
   calc();
   //perform specified calculation
-  var completedCalculation;
+  // var completedCalculation;
 
   function calc() {
     if (operation == 'add') {
-      completedCalculation = val1 + val2;
+      completedCalculation = secondNumber + firstNumber;
     } else if (operation == 'subtract') {
-      completedCalculation = val1 - val2;
+      completedCalculation = secondNumber - firstNumber;
     } else if (operation == 'multiply') {
-      completedCalculation = val1 * val2;
+      completedCalculation = secondNumber * firstNumber;
     } else {
-      completedCalculation = val1 / val2;
+      completedCalculation = secondNumber / firstNumber;
     }
     console.log(completedCalculation);
     return completedCalculation;
