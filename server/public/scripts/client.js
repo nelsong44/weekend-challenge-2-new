@@ -43,17 +43,16 @@ var operation;
 
 //on page load
 $(document).ready(function() {
+  //click events
   $('.valueButton').on('click', packageCurrentValue);
   $('.operationButton').on('click', packageOperation);
   $('#submitButton').on('click', function() {
     sendToServer();
     defaultColors();
-  });
+  });//end submit
   $('#clearButton').on('click', function() {
-      document.getElementById('display').value = '';
-      firstNumber = '';
-      secondNumber = '';
-      defaultColors();
+    clearInput();
+    defaultColors();
   });//end clear
 });//end ready
 
@@ -76,12 +75,11 @@ function packageOperation() {
 
 //reassign the first value to the second value, current value becomes first value
 function swapCurrentValue() {
-  document.getElementById('display').value = '';
   secondNumber = firstNumber;
-  firstNumber = '';
+  clearInput();
 }//end swapCurrentValue
 
-//function to package values and operation into obj to send to server
+//package values and operation into obj and send to server
 function sendToServer() {
   $.ajax({
     type: 'POST',
@@ -93,18 +91,22 @@ function sendToServer() {
     },
     success: function(response) {
       console.log(response);
-      //clear calculator input field
-      document.getElementById('display').value = '';
-      firstNumber = '';
+      clearInput();
       //display calculation output in calculator input field
       $('#display').val(response.completedCalculation);
     }//end success
   });//end post
 }//end sendToServer
 
-//function to return clicked buttons back to their original colors
+//return clicked buttons back to their original colors
 function defaultColors() {
   $('.valueButton').css('background-color', '#7A7A7A');
   $('.operationButton').css('background-color', '#90BE32');
   $('#clearButton').css('background-color', '#f39C12');
 }
+
+//clear out input field and the first value to allow for another calculation
+function clearInput() {
+  document.getElementById('display').value = '';
+  firstNumber = '';
+}//end clearInput
