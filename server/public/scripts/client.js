@@ -98,7 +98,6 @@ function sendToServer() {
       firstNumber = '';
       //display calculation output in calculator input field
       $('#display').val(response.completedCalculation);
-      //call defaultColors to reset buttons to their original colors
     }//end success
   });//end post
 }//end sendToServer
