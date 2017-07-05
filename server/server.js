@@ -52,8 +52,6 @@ app.post('/sendToCalculate', function(req, res) {
   var operation = req.body.operation;
   calc();
   //perform specified calculation
-  // var completedCalculation;
-
   function calc() {
     if (operation == 'add') {
       completedCalculation = secondNumber + firstNumber;

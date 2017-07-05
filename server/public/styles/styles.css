@@ -1,20 +1,32 @@
 body {
-  background-color: #1A5276;
+  background-color: #052F47;
 }
 
 button {
   width: 100px;
   height: 100px;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bolder;
-  margin: 5px -10px;
-  border-radius: 3px;
-  background-color: #85929E;
+  margin: 3px 20px 3px -10px;
+  border-radius: 4px;
+  background-color: #7A7A7A;
   box-shadow: none;
 }
 
 .operationButton {
-  background-color: #F1C40F;
+  background-color: #90BE32;
+}
+
+.row:last-child {
+  margin-bottom: 40px;
+}
+
+.valueButton {
+
+}
+
+#clearButton {
+  background-color: #f39C12;
 }
 
 #title {
@@ -25,20 +37,24 @@ button {
 
 .container {
   margin-top: 30px;
+  width: 60%;
   text-align: center;
-  background-color: #EAECEE;
-  border-radius: 3px;
+  background-color: #CCCCCC;
+  border-radius: 10px;
+
 }
 
 #display {
   width: 200px;
+  height: 50px;
   border: 1px solid black;
-  border-radius: 3px;
+  border-radius: 4px;
   text-align: center;
-  margin-bottom: 10px;
-  font-size: 20px;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  font-size: 30px;
 }
 
 #submitButton {
-  background-color: #F39C12;
+  background-color: #C24428;
 }

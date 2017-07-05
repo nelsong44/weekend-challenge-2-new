@@ -45,11 +45,15 @@ var operation;
 $(document).ready(function() {
   $('.valueButton').on('click', packageCurrentValue);
   $('.operationButton').on('click', packageOperation);
-  $('#submitButton').on('click', sendToServer);
+  $('#submitButton').on('click', function() {
+    sendToServer();
+    defaultColors();
+  });
   $('#clearButton').on('click', function() {
       document.getElementById('display').value = '';
       firstNumber = '';
       secondNumber = '';
+      defaultColors();
   });//end clear
 });//end ready
 
@@ -59,13 +63,14 @@ function packageCurrentValue() {
   firstNumber += $(this).data('id');
   $('#display').val(firstNumber);
   console.log(firstNumber);
+  $(this).css('background-color', '#6D8F8F');
 }//end packageCurrentValue
 
 //target operation to be performed based on button click
 function packageOperation() {
   operation = $(this).data('id');
   console.log(operation);
-  $(this).css('background-color', 'orange');
+  $(this).css('background-color', '#90BE61');
   swapCurrentValue();
 }//end packageOp
 
@@ -93,6 +98,14 @@ function sendToServer() {
       firstNumber = '';
       //display calculation output in calculator input field
       $('#display').val(response.completedCalculation);
+      //call defaultColors to reset buttons to their original colors
     }//end success
   });//end post
 }//end sendToServer
+
+//function to return clicked buttons back to their original colors
+function defaultColors() {
+  $('.valueButton').css('background-color', '#7A7A7A');
+  $('.operationButton').css('background-color', '#90BE32');
+  $('#clearButton').css('background-color', '#f39C12');
+}
