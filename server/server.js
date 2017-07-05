@@ -2,18 +2,9 @@ var express = require('express'); //require the node express module
 var app = express(); //call express function to create an instance of the obj
 var path = require('path');
 var bodyParser = require('body-parser');
-var port = 5000; //establish a port
+var port = process.env.PORT || 5000; //establish a port
 
 app.use(bodyParser.urlencoded({extended:true}));
-
-app.get('/*', function(req, res) {
-  var file = req.params[0] || 'views/index.html';
-  res.sendFile(path.join(__dirname, 'public', file));
-}); //end get
-
-app.listen(port, function() {
-  console.log('server running on port: ', port);
-}); //end listen
 
 // base mode ---------------------------------->
 
@@ -70,3 +61,13 @@ app.post('/sendToCalculate', function(req, res) {
     completedCalculation: completedCalculation
   });//end send
 });//end post
+
+
+app.get('/*', function(req, res) {
+  var file = req.params[0] || 'views/index.html';
+  res.sendFile(path.join(__dirname, 'public', file));
+}); //end get
+
+app.listen(port, function() {
+  console.log('server running on port: ', port);
+}); //end listen

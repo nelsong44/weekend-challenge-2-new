@@ -91,9 +91,11 @@ function sendToServer() {
     },
     success: function(response) {
       console.log(response);
-      clearInput();
+      // delayAnimation();
+      // clearInput();
       //display calculation output in calculator input field
       $('#display').val(response.completedCalculation);
+      // .delay('slow').show()
     }//end success
   });//end post
 }//end sendToServer
@@ -110,3 +112,7 @@ function clearInput() {
   document.getElementById('display').value = '';
   firstNumber = '';
 }//end clearInput
+
+//function delayAnimation() {
+
+//end delayAnimation
